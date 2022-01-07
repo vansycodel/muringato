@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>MURINGATO</title>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+      <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+            <script src=”http://maps.google.com/maps/api/js?v=3.2&sensor=true”></script>
+            <script src=”http://matchingnotes.com/javascripts/leaflet-google.js”></script>
+            <style>
+             .header{
+              display: flex;
+          }
+          .header h3{
+              float: left;
+              margin-left: 720px;
+          }
+          h3{
+             display: inline-flex;
+             margin-left: 240px;
+            box-sizing: border-box;
+            justify-content:space-between;
+          }
+          .signup{
+             margin-left: 20px;
+          }
+          </style>
+   </head>
+
+   <body>
+    <div class="header">
+        <h2>MURINGATO</h2>
+        <h3> <a href="about_page.html" class="about">About</a>
+             <a href="signup_button.html" class="signup">signup</a>
+       </h3>
+    </div>
+      <div id = "map" style = "width:1350px; height: 620px"></div>
+
+      <script>
+        // Creating map options
+        var mapOptions = {
+           center: [-0.40062, 36.99102],
+           zoom: 10
+        }
+        
+        // Creating a map object
+        var map = new L.map('map', mapOptions);
+        
+        // Creating a Layer object
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        
+         
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+map.addLayer(layer);
+
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+osm.addTo(map);
+
+googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleStreets.addTo(map);
+
+googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleSat.addTo(map);
+
+var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: 'abcd',
+    minZoom: 1,
+    maxZoom: 16,
+    ext: 'jpg'
+});
+Stamen_Watercolor.addTo(map);
+
+var baseLayers = {
+    "Satellite":googleSat,
+    "Google Map":googleStreets,
+    "Water Color":Stamen_Watercolor,
+    "OpenStreetMap": osm,
+};
+
+L.control.layers( baseLayers ).addTo(map);
+      
+     </script>
+   </body>
+   <div id="footer"><p>(c) By John Kariuki </p></div>
+</html>
